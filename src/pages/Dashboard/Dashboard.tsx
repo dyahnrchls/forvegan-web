@@ -66,7 +66,6 @@ export const Dashboard = () => {
 			.then((res) => {
 				const data: IngredientListData[] = res.data.data;
 				const meta: IngredientListMeta = res.data.meta;
-				console.log({ data: res.data });
 				setIngredients(data);
 				setMeta(meta);
 			});

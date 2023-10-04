@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,23 +7,21 @@ import {
 	Button,
 	DialogActions,
 	DialogContent,
-	DialogContentText,
 	DialogTitle,
 	TextField,
 	Dialog,
-	FormControl,
 	InputLabel,
-	Input,
-	FormHelperText,
-	OutlinedInput,
 	Grid,
 	Select,
+	DialogContentText,
 } from '@mui/material';
 import { IngredientListData } from '../../../pages/Dashboard/Dashboard';
+import axios from 'axios';
 
 export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 	const [openEditModal, setOpenEditModal] = useState<boolean>(false);
-	const [value, setValue] = useState<IngredientListData>();
+	const [openRemoveModal, setOpenRemoveModal] = useState<boolean>(false);
+	const [value, setValue] = useState<IngredientListData>(row);
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	const open = Boolean(anchorEl);
@@ -33,23 +31,35 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 	};
 	const handleClose = () => {
 		setOpenEditModal(false);
+		setOpenRemoveModal(false);
 		setAnchorEl(null);
 	};
-	const add = () => {
+	const edit = () => {
 		setOpenEditModal(true);
-		// console.log('Add: ', row);
-		// handleClose();
+	};
+	const onEditSave = () => {
+		axios
+			.put(`http://localhost:8080/ingredient/${row.id}`, {
+				name: value?.name,
+				category: value?.category,
+			})
+			.then(handleClose);
 	};
 	const remove = () => {
-		console.log('remove: ', row);
-		handleClose();
+		setOpenRemoveModal(true);
 	};
-
-	useEffect(() => {
-		if (row) {
-			setValue(row);
+	const onRemove = () => {
+		axios.delete(`http://localhost:8080/ingredient/${row.id}`).then(handleClose);
+	};
+	const isDisabled = () => {
+		if (value?.name?.length === 0) {
+			return true;
 		}
-	}, [row]);
+		if (value?.name === row?.name && value?.category === row?.category) {
+			return true;
+		}
+		return false;
+	};
 
 	return (
 		<div>
@@ -72,7 +82,7 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 				open={open}
 				onClose={handleClose}
 			>
-				<MenuItem key='1' onClick={add}>
+				<MenuItem key='1' onClick={edit}>
 					Edit
 				</MenuItem>
 				<MenuItem key='2' onClick={remove}>
@@ -105,6 +115,7 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 								autoComplete='off'
 								variant='outlined'
 								defaultValue={value?.name}
+								onChange={(e) => setValue({ ...value, name: e.target.value })}
 							/>
 						</Grid>
 
@@ -123,7 +134,7 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 								labelId='demo-simple-select-label'
 								id='demo-simple-select'
 								value={value?.category}
-								onChange={(value) => console.log(value)}
+								onChange={(e) => setValue({ ...value, category: e.target.value })}
 								style={{ width: '100%' }}
 							>
 								<MenuItem value={'vegan'}>Vegan</MenuItem>
@@ -135,7 +146,24 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={handleClose}>Save</Button>
+					<Button disabled={isDisabled()} onClick={onEditSave}>
+						Save
+					</Button>
+				</DialogActions>
+			</Dialog>
+			<Dialog
+				open={openRemoveModal}
+				onClose={handleClose}
+				aria-labelledby='alert-dialog-title'
+				aria-describedby='alert-dialog-description'
+			>
+				<DialogTitle id='alert-dialog-title'>Remove</DialogTitle>
+				<DialogContent>
+					<DialogContentText id='alert-dialog-description'>Are you sure want to remove {row?.name} ?</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleClose}>Cancel</Button>
+					<Button onClick={onRemove}>Remove</Button>
 				</DialogActions>
 			</Dialog>
 		</div>
