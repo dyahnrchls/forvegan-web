@@ -14,17 +14,8 @@ export const Layout: FC = ({ children }) => {
 	const toggleNavigation = () => setOpen((status) => !status);
 
 	return (
-		<div
-			css={css`
-				min-height: 100vh;
-			`}
-		>
-			<div
-				css={css`
-					display: flex;
-					min-height: calc(100vh - ${FOOTER_HEIGHT}px);
-				`}
-			>
+		<div style={{ minHeight: '100vh' }}>
+			<div style={{ display: 'flex', minHeight: `calc(100vh - ${FOOTER_HEIGHT}px)` }}>
 				<Box component='header'>
 					<Header toggleNavigation={toggleNavigation} />
 				</Box>

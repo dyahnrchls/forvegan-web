@@ -8,21 +8,21 @@ export const Footer = () => {
 	const theme = useTheme();
 	return (
 		<div
-			css={css`
-				flex: 1;
-				display: flex;
-				justify-content: center;
-				background: ${theme.palette.background.paper};
-				min-height: ${FOOTER_HEIGHT};
-			`}
+		// css={css`
+		// 	flex: 1;
+		// 	display: flex;
+		// 	justify-content: center;
+		// 	background: ${theme.palette.background.paper};
+		// 	min-height: ${FOOTER_HEIGHT};
+		// `}
 		>
 			<Typography
-				css={css`
-					word-spacing: 0.1rem;
-					text-transform: uppercase;
-				`}
-				variant='caption'
-				color='textSecondary'
+			// css={css`
+			// 	word-spacing: 0.1rem;
+			// 	text-transform: uppercase;
+			// `}
+			// variant='caption'
+			// color='textSecondary'
 			>
 				{/* {FOOTER_TEXT} */}
 			</Typography>
