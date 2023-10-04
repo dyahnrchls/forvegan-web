@@ -1,13 +1,13 @@
 import { alpha, InputBase, styled, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-export const Search = () => (
+export const Search = ({ onChange }: any) => (
 	<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
 		<SearchWrapper>
 			<SearchIconWrapper>
 				<SearchIcon />
 			</SearchIconWrapper>
-			<StyledInputBase placeholder='Search…' inputProps={{ 'aria-label': 'search' }} />
+			<StyledInputBase onChange={onChange} placeholder='Search…' inputProps={{ 'aria-label': 'search' }} />
 		</SearchWrapper>
 	</Box>
 );

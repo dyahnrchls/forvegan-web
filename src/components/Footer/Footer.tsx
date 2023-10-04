@@ -24,7 +24,7 @@ export const Footer = () => {
 				variant='caption'
 				color='textSecondary'
 			>
-				{FOOTER_TEXT}
+				{/* {FOOTER_TEXT} */}
 			</Typography>
 		</div>
 	);

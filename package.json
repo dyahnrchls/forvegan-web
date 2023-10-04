@@ -1,16 +1,7 @@
 {
-  "name": "weldev-project-react-mui-ts-bp",
+  "name": "forvegan-web",
   "version": "2.0.0",
-  "description": "React TypeScript Material-UI boilerplate by Welcome, Developer.",
-  "author": {
-    "name": "Dan Castro",
-    "url": "https://www.welcomedeveloper.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/danilocastronz/weldev-project-react-mui-ts-bp",
-    "directory": "weldev-project-react-mui-ts-bp"
-  },
+  "description": "React TypeScript Material-UI boilerplate",
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -26,6 +17,7 @@
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "@types/react-helmet": "^6.1.0",
+    "axios": "^1.5.0",
     "dotenv": "^8.2.0",
     "hamburger-react": "^2.4.1",
     "react": "^17.0.1",
@@ -71,5 +63,5 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.3.2"
-  }
+   }
 }
