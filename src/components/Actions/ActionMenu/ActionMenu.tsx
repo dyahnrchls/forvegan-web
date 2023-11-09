@@ -18,7 +18,7 @@ import {
 import { IngredientListData } from '../../../pages/Dashboard/Dashboard';
 import axios from 'axios';
 
-export const ActionMenu = ({ row }: { row: IngredientListData }) => {
+export const ActionMenu = ({ row, getIngredientList }: { row: IngredientListData; getIngredientList: () => void }) => {
 	const [openEditModal, setOpenEditModal] = useState<boolean>(false);
 	const [openRemoveModal, setOpenRemoveModal] = useState<boolean>(false);
 	const [value, setValue] = useState<IngredientListData>(row);
@@ -43,13 +43,19 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 				name: value?.name,
 				category: value?.category,
 			})
-			.then(handleClose);
+			.then(() => {
+				getIngredientList();
+				handleClose();
+			});
 	};
 	const remove = () => {
 		setOpenRemoveModal(true);
 	};
 	const onRemove = () => {
-		axios.delete(`http://localhost:8080/ingredient/${row.id}`).then(handleClose);
+		axios.delete(`http://localhost:8080/ingredient/${row.id}`).then(() => {
+			getIngredientList();
+			handleClose();
+		});
 	};
 	const isDisabled = () => {
 		if (value?.name?.length === 0) {
@@ -69,8 +75,7 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 				aria-controls={open ? 'long-menu' : undefined}
 				aria-expanded={open ? 'true' : undefined}
 				aria-haspopup='true'
-				onClick={handleClick}
-			>
+				onClick={handleClick}>
 				<MoreVertIcon />
 			</IconButton>
 			<Menu
@@ -80,8 +85,7 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 				}}
 				anchorEl={anchorEl}
 				open={open}
-				onClose={handleClose}
-			>
+				onClose={handleClose}>
 				<MenuItem key='1' onClick={edit}>
 					Edit
 				</MenuItem>
@@ -99,8 +103,7 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 								sx={{
 									display: 'flex',
 									fontWeight: 700,
-								}}
-							>
+								}}>
 								Nama Bahan
 							</InputLabel>
 						</Grid>
@@ -124,8 +127,7 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 								sx={{
 									display: 'flex',
 									fontWeight: 700,
-								}}
-							>
+								}}>
 								Kategori
 							</InputLabel>
 						</Grid>
@@ -135,8 +137,7 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 								id='demo-simple-select'
 								value={value?.category}
 								onChange={(e) => setValue({ ...value, category: e.target.value })}
-								style={{ width: '100%' }}
-							>
+								style={{ width: '100%' }}>
 								<MenuItem value={'vegan'}>Vegan</MenuItem>
 								<MenuItem value={'non vegan'}>Non Vegan</MenuItem>
 								<MenuItem value={'both'}>Both</MenuItem>
@@ -155,8 +156,7 @@ export const ActionMenu = ({ row }: { row: IngredientListData }) => {
 				open={openRemoveModal}
 				onClose={handleClose}
 				aria-labelledby='alert-dialog-title'
-				aria-describedby='alert-dialog-description'
-			>
+				aria-describedby='alert-dialog-description'>
 				<DialogTitle id='alert-dialog-title'>Remove</DialogTitle>
 				<DialogContent>
 					<DialogContentText id='alert-dialog-description'>Are you sure want to remove {row?.name} ?</DialogContentText>

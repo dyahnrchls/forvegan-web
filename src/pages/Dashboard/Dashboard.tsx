@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -50,10 +50,10 @@ export const Dashboard = () => {
 
 	const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		setRowsPerPage(parseInt(event.target.value, 10));
-		setPage(0);
+		setPage(1);
 	};
 
-	useEffect(() => {
+	const getIngredientList = useCallback(() => {
 		axios
 			.get('http://localhost:8080/ingredients', {
 				params: {
@@ -71,6 +71,10 @@ export const Dashboard = () => {
 			});
 	}, [filter, keyword, page, rowsPerPage]);
 
+	useEffect(() => {
+		getIngredientList();
+	}, [getIngredientList]);
+
 	return (
 		<div>
 			<div
@@ -78,52 +82,45 @@ export const Dashboard = () => {
 					display: 'flex',
 					justifyContent: 'space-between',
 					paddingBottom: 16,
-				}}
-			>
+				}}>
 				<div
 					style={{
 						display: 'flex',
 						gap: 8,
-					}}
-				>
+					}}>
 					<Fab
 						variant='extended'
 						size='small'
 						color={filter === '' ? 'primary' : 'secondary'}
-						onClick={() => setFilter('')}
-					>
+						onClick={() => setFilter('')}>
 						All
 					</Fab>
 					<Fab
 						variant='extended'
 						size='small'
 						color={filter === 'vegan' ? 'primary' : 'secondary'}
-						onClick={() => setFilter('vegan')}
-					>
+						onClick={() => setFilter('vegan')}>
 						Vegan
 					</Fab>
 					<Fab
 						variant='extended'
 						size='small'
 						color={filter === 'non vegan' ? 'primary' : 'secondary'}
-						onClick={() => setFilter('non vegan')}
-					>
+						onClick={() => setFilter('non vegan')}>
 						Non Vegan
 					</Fab>
 					<Fab
 						variant='extended'
 						size='small'
 						color={filter === 'both' ? 'primary' : 'secondary'}
-						onClick={() => setFilter('both')}
-					>
+						onClick={() => setFilter('both')}>
 						Both
 					</Fab>
 					<Fab
 						variant='extended'
 						size='small'
 						color={filter === 'unknown' ? 'primary' : 'secondary'}
-						onClick={() => setFilter('unknown')}
-					>
+						onClick={() => setFilter('unknown')}>
 						Unknown
 					</Fab>
 				</div>
@@ -133,8 +130,7 @@ export const Dashboard = () => {
 				component={Paper}
 				style={{
 					maxHeight: '72vh',
-				}}
-			>
+				}}>
 				<Table sx={{ minWidth: 650 }} stickyHeader aria-label='simple table'>
 					<TableHead>
 						<TableRow>
@@ -151,7 +147,7 @@ export const Dashboard = () => {
 								</TableCell>
 								<TableCell align='right'>{row.category}</TableCell>
 								<TableCell align='right'>
-									<ActionMenu row={row} />
+									<ActionMenu row={row} getIngredientList={getIngredientList} />
 								</TableCell>
 							</TableRow>
 						))}
