@@ -30,7 +30,7 @@ export const Header = ({ toggleNavigation }: HeaderProps) => {
 
 	return (
 		<>
-			<AppBar position='fixed' sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+			<AppBar position='fixed' sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: 'white' }}>
 				<Toolbar disableGutters variant='dense'>
 					<Hamburger toggleNavigation={toggleNavigation} />
 					<AppTitle />

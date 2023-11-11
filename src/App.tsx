@@ -14,7 +14,7 @@ import { DARK_MODE_THEME, LIGHT_MODE_THEME } from './utils/constants';
 import { Dashboard } from './pages/Dashboard';
 
 function App() {
-	const [mode, setMode] = useState<typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME>(DARK_MODE_THEME);
+	const [mode, setMode] = useState<typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME>(LIGHT_MODE_THEME);
 	const appClient = new AppClient();
 
 	const themeMode = useMemo(

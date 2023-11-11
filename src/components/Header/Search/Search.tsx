@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export const Search = ({ onChange }: any) => (
 	<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
-		<SearchWrapper>
+		<SearchWrapper style={{ backgroundColor: '#f1f3f4' }}>
 			<SearchIconWrapper>
 				<SearchIcon />
 			</SearchIconWrapper>

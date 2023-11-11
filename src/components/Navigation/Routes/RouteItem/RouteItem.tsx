@@ -46,21 +46,19 @@ export const RouteItem = ({
 				cursor: ${!route.isEnabled ? 'not-allowed' : 'auto'};
 				color: ${!route.isEnabled ? theme.palette.text.secondary : 'auto'};
 			`}
-			onClick={() => handleMenuClick(route)}
-		>
+			onClick={() => handleMenuClick(route)}>
 			<ListItemIcon>
 				<IconButton
 					size='small'
 					css={css`
-						box-shadow: ${isSelected ? `0 0 0 2px ${lighten(theme.palette.primary.main, 0.6)}` : 'default'};
+						box-shadow: ${isSelected ? `0 0 0 2px ${lighten('#96A567', 0.6)}` : 'default'};
 						transition: 'box-shadow 0.1s';
-					`}
-				>
+					`}>
 					{route.icon && (
 						<Icon
 							component={route.icon}
 							css={css`
-								color: ${isSelected && theme.palette.primary.main};
+								color: ${isSelected && '#96A567'};
 							`}
 						/>
 					)}
@@ -79,8 +77,7 @@ export const RouteItem = ({
 			css={css`
 				text-decoration: none;
 				color: inherit;
-			`}
-		>
+			`}>
 			{route.description ? (
 				<Tooltip title={`${route.description}${!route.isEnabled ? ' (Not Allowed)' : ''}`} placement='right'>
 					{item}
