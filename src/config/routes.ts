@@ -1,6 +1,6 @@
 import {
 	Home as HomeIcon,
-	// BarChartOutlined as DashboardIcon,
+	AvTimerOutlined as DashboardIcon,
 	// CodeOutlined as CodeIcon,
 	// GitHub as GitHubIcon,
 	// Public as PublicIcon,
@@ -18,12 +18,12 @@ import { Route } from '../types/Route';
 const routes: Array<Route> = [
 	{
 		key: 'router-home',
-		title: 'Home',
-		description: 'Home',
+		title: 'Dashboard',
+		description: 'Dashboard',
 		component: Home,
-		path: '/',
+		path: '/dashboard',
 		isEnabled: true,
-		icon: HomeIcon,
+		icon: DashboardIcon,
 		appendDivider: true,
 	},
 	// {
