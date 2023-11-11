@@ -28,6 +28,7 @@ const Login: React.FC = () => {
 			.post(`http://localhost:8080/login`, {
 				username: usernameValue,
 				password: passwordValue,
+
 			})
 			.then((res) => {
 				const token = res?.data?.token ?? '';
@@ -116,7 +117,6 @@ const Login: React.FC = () => {
 						Submit
 					</Button>
 				</div>
-			</div>
 		</div>
 	);
 };
