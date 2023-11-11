@@ -62,11 +62,11 @@ const Login: React.FC = () => {
 	}, []);
 
 	return (
-		<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%', gap: 12 }}>
-			<div style={{ width: '50%' }}>
+		<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%', gap: 24 }}>
+			<div style={{ width: '30%', display: 'flex', justifyContent: 'center' }}>
 				<img src={loginPng} alt='Login' width={'100%'} />
 			</div>
-			<div style={{ width: '50%', height: '70%', display: 'flex', justifyContent: 'center' }}>
+			<div style={{ width: '30%', height: '70%', display: 'flex', justifyContent: 'center' }}>
 				<div
 					style={{
 						width: '100%',
