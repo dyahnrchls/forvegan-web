@@ -91,35 +91,65 @@ export const Dashboard = () => {
 					<Fab
 						variant='extended'
 						size='small'
-						color={filter === '' ? 'primary' : 'secondary'}
+						style={{
+							borderWidth: 1,
+							borderColor: filter === '' ? '#4A6130' : '#D0D0D0',
+							borderRadius: 4,
+							backgroundColor: filter === '' ? '#F2F6E6' : '#FFFFFF',
+							color: filter === '' ? '#4A6130' : 'black',
+						}}
 						onClick={() => setFilter('')}>
 						All
 					</Fab>
 					<Fab
 						variant='extended'
 						size='small'
-						color={filter === 'vegan' ? 'primary' : 'secondary'}
+						style={{
+							border: 1,
+							borderColor: filter === 'vegan' ? '#4A6130' : '#D0D0D0',
+							borderRadius: 4,
+							backgroundColor: filter === 'vegan' ? '#F2F6E6' : '#FFFFFF',
+							color: filter === 'vegan' ? '#4A6130' : 'black',
+						}}
 						onClick={() => setFilter('vegan')}>
 						Vegan
 					</Fab>
 					<Fab
 						variant='extended'
 						size='small'
-						color={filter === 'non vegan' ? 'primary' : 'secondary'}
+						style={{
+							border: 1,
+							borderColor: filter === 'non vegan' ? '#4A6130' : '#D0D0D0',
+							borderRadius: 4,
+							backgroundColor: filter === 'non vegan' ? '#F2F6E6' : '#FFFFFF',
+							color: filter === 'non vegan' ? '#4A6130' : 'black',
+						}}
 						onClick={() => setFilter('non vegan')}>
 						Non Vegan
 					</Fab>
 					<Fab
 						variant='extended'
 						size='small'
-						color={filter === 'both' ? 'primary' : 'secondary'}
+						style={{
+							border: 1,
+							borderColor: filter === 'both' ? '#4A6130' : '#D0D0D0',
+							borderRadius: 4,
+							backgroundColor: filter === 'both' ? '#F2F6E6' : '#FFFFFF',
+							color: filter === 'both' ? '#4A6130' : 'black',
+						}}
 						onClick={() => setFilter('both')}>
 						Both
 					</Fab>
 					<Fab
 						variant='extended'
 						size='small'
-						color={filter === 'unknown' ? 'primary' : 'secondary'}
+						style={{
+							border: 1,
+							borderColor: filter === 'unknown' ? '#4A6130' : '#D0D0D0',
+							borderRadius: 4,
+							backgroundColor: filter === 'unknown' ? '#F2F6E6' : '#FFFFFF',
+							color: filter === 'unknown' ? '#4A6130' : 'black',
+						}}
 						onClick={() => setFilter('unknown')}>
 						Unknown
 					</Fab>

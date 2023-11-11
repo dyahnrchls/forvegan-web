@@ -146,8 +146,14 @@ export const ActionMenu = ({ row, getIngredientList }: { row: IngredientListData
 					</Grid>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose}>Cancel</Button>
-					<Button disabled={isDisabled()} onClick={onEditSave}>
+					<Button onClick={handleClose} variant='outlined' style={{ color: 'black', borderColor: '#D0D0D0' }}>
+						Cancel
+					</Button>
+					<Button
+						disabled={isDisabled()}
+						onClick={onEditSave}
+						variant='contained'
+						style={{ color: 'white', backgroundColor: '#4A6130' }}>
 						Save
 					</Button>
 				</DialogActions>
@@ -162,8 +168,12 @@ export const ActionMenu = ({ row, getIngredientList }: { row: IngredientListData
 					<DialogContentText id='alert-dialog-description'>Are you sure want to remove {row?.name} ?</DialogContentText>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={onRemove}>Remove</Button>
+					<Button onClick={handleClose} variant='outlined' style={{ color: 'black', borderColor: '#D0D0D0' }}>
+						Cancel
+					</Button>
+					<Button onClick={onRemove} variant='contained' style={{ color: 'white', backgroundColor: '#4A6130' }}>
+						Remove
+					</Button>
 				</DialogActions>
 			</Dialog>
 		</div>

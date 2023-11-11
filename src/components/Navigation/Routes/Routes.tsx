@@ -22,7 +22,7 @@ export const Routes = () => {
 
 	return (
 		<>
-			<List component='nav' sx={{ height: '100%' }}>
+			<List component='nav' sx={{ height: '100%', color: '#96A567' }}>
 				{routesState.map((route: Route) => (
 					<div key={route.key}>
 						{route.subRoutes ? (
