@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-
+import logoPng from '../../../assets/png/logo.png';
 import { APP_TITLE } from '../../../utils/constants';
 
 export const AppTitle = () => (
@@ -11,20 +11,7 @@ export const AppTitle = () => (
 		css={css`
 			text-decoration: none;
 			color: inherit;
-		`}
-	>
-		<Typography
-			variant='h6'
-			noWrap
-			css={css`
-				display: {
-					xs: none;
-					sm: block;
-				}
-				cursor: pointer;
-			`}
-		>
-			{APP_TITLE}
-		</Typography>
+		`}>
+		<img src={logoPng} alt='Logo' height='30' />
 	</NavLink>
 );

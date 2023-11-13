@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 
 import { Navigation } from '../Navigation';
@@ -12,6 +12,25 @@ import { FOOTER_HEIGHT } from '../../utils/constants';
 export const Layout: FC = ({ children }) => {
 	const [open, setOpen] = useState(false);
 	const toggleNavigation = () => setOpen((status) => !status);
+	const [showDrawer, setShowDrawer] = useState<boolean>(false);
+
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		const expirationTime = localStorage.getItem('tokenExpiration');
+
+		if (token && expirationTime) {
+			const isTokenExpired = Date.now() >= parseInt(expirationTime, 10);
+
+			if (isTokenExpired) {
+				// Token has expired, perform logout or reauthentication
+			} else {
+				// Token is still valid
+				setShowDrawer(true);
+			}
+		} else {
+			// Token or expiration time is not found, handle as needed
+		}
+	}, [localStorage.getItem('token'), localStorage.getItem('tokenExpiration')]);
 
 	return (
 		<div style={{ minHeight: '100vh' }}>
@@ -19,7 +38,7 @@ export const Layout: FC = ({ children }) => {
 				<Box component='header'>
 					<Header toggleNavigation={toggleNavigation} />
 				</Box>
-				<Navigation open={open} handleClose={toggleNavigation} />
+				{showDrawer && <Navigation open={open} handleClose={toggleNavigation} />}
 				<Box component='main' sx={{ flexGrow: 1, p: 3, pt: 10 }}>
 					{children}
 				</Box>

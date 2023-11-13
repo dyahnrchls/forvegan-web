@@ -14,15 +14,8 @@ import { DARK_MODE_THEME, LIGHT_MODE_THEME } from './utils/constants';
 import { Dashboard } from './pages/Dashboard';
 import Login from './pages/Login/Login';
 
-const PrivateRoute: React.FC<{ component: React.FC }> = ({ component: Component, ...rest }) => (
-	<Route
-		{...rest}
-		render={(props) => (localStorage.getItem('token') ? <Component {...props} /> : <Redirect to='/login' />)}
-	/>
-);
-
 function App() {
-	const [mode, setMode] = useState<typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME>(DARK_MODE_THEME);
+	const [mode, setMode] = useState<typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME>(LIGHT_MODE_THEME);
 	const appClient = new AppClient();
 
 	const themeMode = useMemo(
@@ -36,7 +29,6 @@ function App() {
 
 	const theme = useMemo(() => getAppTheme(mode), [mode]);
 
-	const addRoute = (route: AppRoute) => <PrivateRoute key={route.key} path={route.path} component={Dashboard} exact />;
 
 	return (
 		<AppContext.Provider value={appClient}>
@@ -50,8 +42,12 @@ function App() {
 								{/* {routes.map((route: AppRoute) =>
 									route.subRoutes ? route.subRoutes.map((item: AppRoute) => addRoute(item)) : addRoute(route)
 								)} */}
+
 								<Route exact path='/login' component={Login} />
-								<PrivateRoute exact path='/dashboard' component={Dashboard} />
+								<Route
+									exact
+									render={(props) => (localStorage.getItem('token') ? <Dashboard /> : <Redirect to='/login' />)}
+								/>
 							</Layout>
 						</Switch>
 					</Router>

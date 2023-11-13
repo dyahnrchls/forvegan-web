@@ -6,6 +6,9 @@ import { IconButton, ListItemButton, ListItemIcon, ListItemText } from '@mui/mat
 export const SignOutRoute = () => {
 	const handleSignOutClick = () => {
 		alert('Signing Out...');
+		localStorage.removeItem('token');
+		localStorage.removeItem('tokenExpiration');
+		window.location.reload();
 	};
 
 	return (
@@ -15,8 +18,7 @@ export const SignOutRoute = () => {
 				bottom: 0;
 				width: 100%;
 			`}
-			onClick={handleSignOutClick}
-		>
+			onClick={handleSignOutClick}>
 			<ListItemIcon>
 				<IconButton size='small'>
 					<ExitToApp />

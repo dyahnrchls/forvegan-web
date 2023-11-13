@@ -12,7 +12,7 @@ interface NavigationProps {
 
 export const Navigation = ({ open, handleClose }: NavigationProps) => {
 	return (
-		<Drawer variant='permanent' open={open} onClose={handleClose}>
+		<Drawer variant='permanent' open={open} onClose={handleClose} style={{ color: '#96A567' }}>
 			<DrawerHeader />
 			<Routes />
 		</Drawer>
