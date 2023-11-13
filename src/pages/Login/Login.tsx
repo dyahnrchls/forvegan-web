@@ -25,7 +25,7 @@ const Login: React.FC = () => {
 			password !== '' ? password : (document.getElementById('outlined-adornment-password') as any)?.value;
 
 		axios
-			.post(`http://localhost:8080/login`, {
+			.post(`https://pear-different-snail.cyclic.app/login`, {
 				username: usernameValue,
 				password: passwordValue,
 			})
@@ -66,7 +66,7 @@ const Login: React.FC = () => {
 			<div style={{ width: '30%', display: 'flex', justifyContent: 'center' }}>
 				<img src={loginPng} alt='Login' width={'100%'} />
 			</div>
-			<div style={{ width: '30%', height: '70%', display: 'flex', justifyContent: 'center' }}>
+			<div style={{ width: '30%', height: 'fit-content', display: 'flex', justifyContent: 'center' }}>
 				<div
 					style={{
 						width: '100%',
@@ -78,6 +78,7 @@ const Login: React.FC = () => {
 						paddingLeft: 24,
 						paddingRight: 24,
 						gap: 16,
+						paddingBottom: 24,
 					}}>
 					<h2 style={{ textAlign: 'center' }}>Log In</h2>
 					<FormControl variant='outlined' style={{ width: '100%' }}>

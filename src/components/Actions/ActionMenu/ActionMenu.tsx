@@ -39,7 +39,7 @@ export const ActionMenu = ({ row, getIngredientList }: { row: IngredientListData
 	};
 	const onEditSave = () => {
 		axios
-			.put(`http://localhost:8080/ingredient/${row.id}`, {
+			.put(`https://pear-different-snail.cyclic.app/ingredient/${row.id}`, {
 				name: value?.name,
 				category: value?.category,
 			})
@@ -52,7 +52,7 @@ export const ActionMenu = ({ row, getIngredientList }: { row: IngredientListData
 		setOpenRemoveModal(true);
 	};
 	const onRemove = () => {
-		axios.delete(`http://localhost:8080/ingredient/${row.id}`).then(() => {
+		axios.delete(`https://pear-different-snail.cyclic.app/ingredient/${row.id}`).then(() => {
 			getIngredientList();
 			handleClose();
 		});
