@@ -55,7 +55,7 @@ export const Dashboard = () => {
 
 	const getIngredientList = useCallback(() => {
 		axios
-			.get('http://localhost:8080/ingredients', {
+			.get('https://pear-different-snail.cyclic.app/ingredients', {
 				params: {
 					page,
 					category: filter,
